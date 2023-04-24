@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Profile{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-evenly my-1">
+    <div class="col-4">
+        <div class="row justify-content-evenly my-1">
+            <h1 class="d-flex justify-content-center">@{{user.username}}</h1>
+            <h1 class="d-flex justify-content-center">The Most Recent Style Transfer</h1>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    <figure class="figure">
+        <img src="{{ output_image }}" class="figure-img img-fluid rounded" alt="...">
+        <figcaption class="figure-caption text-center">Output Image</figcaption>
+    </figure>
+</div>
+<div class="text-center">
+    <figure class="figure">
+        <img src="{{ content_image }}" class="figure-img img-fluid rounded float-start" alt="...">
+        <figcaption class="figure-caption text-center">Content Image</figcaption>
+    </figure>
+    <figure class="figure">
+        <img src="{{ style_image }}" class="figure-img img-fluid rounded float-end" alt="...">
+        <figcaption class="figure-caption text-center">Style Image</figcaption>
+    </figure>
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Result Photo{% endblock %}
+
+{% block content %}
+<h1 class="text-center">Style Transfer Result</h1>
+<div class="text-center">
+    <figure class="figure">
+        <img src="{{ output_image }}" class="figure-img img-fluid rounded" alt="...">
+        <figcaption class="figure-caption text-center">Output Image</figcaption>
+    </figure>
+</div>
+<div class="text-center">
+    <figure class="figure">
+        <img src="{{ content_image }}" class="figure-img img-fluid rounded float-start" alt="...">
+        <figcaption class="figure-caption text-center">Content Image</figcaption>
+    </figure>
+    <figure class="figure">
+        <img src="{{ style_image }}" class="figure-img img-fluid rounded float-end" alt="...">
+        <figcaption class="figure-caption text-center">Style Image</figcaption>
+    </figure>
+</div>
+
+{% endblock %}
