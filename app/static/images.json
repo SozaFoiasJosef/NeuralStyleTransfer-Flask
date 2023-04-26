@@ -1,0 +1,108 @@
+{
+    "content_urls": [
+        {
+            "title": "University of Rochester",
+            "image_url": "https://www.rochester.edu/assets/images/2007-10-31_Rush_Rhees_Library_10152.jpg"
+        },
+        {
+            "title": "New York City",
+            "image_url": "https://i.natgeofe.com/n/874df281-d3e0-489a-98c0-6b840023b828/newyork_NationalGeographic_2328428_2x1.jpg"
+        },
+        {
+            "title": "Adam Sandler",
+            "image_url": "https://hips.hearstapps.com/hmg-prod/images/adam-sandler-gettyimages-481511486.jpg"
+        },
+        {
+            "title": "Professor Andrew Read-McFarland",
+            "image_url": "https://www.cs.rochester.edu/u/areadmcf/images/andrew.jpg"
+        },
+        {
+            "title": "Thomas Shelby",
+            "image_url": "https://static.wikia.nocookie.net/peaky-blinders/images/8/8e/Tommys3.jpg/revision/latest?cb=20190715140230"
+        },
+        {
+            "title": "Japan",
+            "image_url": "https://www.state.gov/wp-content/uploads/2019/04/Japan-2107x1406.jpg"
+        },
+        {
+            "title": "Golden Gate Bridge",
+            "image_url": "https://assets.editorial.aetnd.com/uploads/2015/02/topic-golden-gate-bridge-gettyimages-177770941.jpg"
+        },
+        {
+            "title": "Joe Biden",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Joe_Biden_presidential_portrait.jpg/1200px-Joe_Biden_presidential_portrait.jpg"
+        }
+    ],
+    "style_urls": [
+        {
+            "title": "The Starry Night",
+            "artist": "Vincent van Gogh",
+            "image_url": "https://cdn.britannica.com/78/43678-050-F4DC8D93/Starry-Night-canvas-Vincent-van-Gogh-New-1889.jpg"
+        },
+        {
+            "title": "Asheville",
+            "artist": "Willem de Kooning",
+            "image_url": "https://www.phillipscollection.org/sites/default/files/styles/feature_extra_large_no_crop_1200_/public/collection/0484.jpg?itok=4ZKq6G8-"
+        },
+        {
+            "title": "The Persistence of Memory",
+            "artist": "Salvador Dalí",
+            "image_url": "C:/Users/Josef/Desktop/CSC210/Project2/app/static/picasso.jpg"
+        },
+        {
+            "title": "The Persistence of Memory",
+            "artist": "Salvador Dalí",
+            "image_url": "C:/Users/Josef/Desktop/CSC210/Project2/app/static/style1.jpg"
+        },
+        {
+            "title": "The Trial",
+            "artist": "Wolfgang Lettl",
+            "image_url": "https://miro.medium.com/v2/resize:fit:720/format:webp/0*ZT1FVi94bood75Zs.jpg"
+        },
+        {
+            "title": "The Muse",
+            "artist": "Pablo Picasso",
+            "image_url": "https://www.pablopicasso.org/images/paintings/the-muse.jpg"
+        },
+        {
+            "title": "Tableau No. 2/Composition No. VII",
+            "artist": "Piet Mondrian",
+            "image_url": "https://www.guggenheim.org/wp-content/uploads/1913/01/49.1228_ph_web-1.jpg"
+        },
+        {
+            "title": "Contraste de forme",
+            "artist": "Fernand Leger",
+            "image_url": "https://uploads5.wikiart.org/images/fernand-leger/houses-in-the-trees-landscape-n-3-1914.jpg!Large.jpg"
+        },
+        {
+            "title": "Self-Portrait with a Straw Hat",
+            "artist": "Vincent van Gogh",
+            "image_url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/436532/1671316/main-image"
+        },
+        {
+            "title": "On White II",
+            "artist": "Wassily Kandinsky",
+            "image_url": "https://uploads5.wikiart.org/images/wassily-kandinsky/on-white-ii-1923.jpg!Large.jpg"
+        },
+        {
+            "title": "Abstraction",
+            "artist": "David Burliuk",
+            "image_url": "https://uploads4.wikiart.org/images/david-burliuk/abstraction.jpg"
+        },
+        {
+            "title": "Iridescent Interpenetration No. 4 - Study of light",
+            "artist": "Giacomo Balla",
+            "image_url": "https://uploads1.wikiart.org/images/giacomo-balla/iridescent-interpenetration-no-4-study-of-light-1912.jpg!Large.jpg"
+        },
+        {
+            "title": "Bos",
+            "artist": "Jacoba van Heemskerck",
+            "image_url": "https://uploads0.wikiart.org/images/jacoba-van-heemskerck/bos-1912.jpg"
+        },
+        {
+            "title": "Cubist Composition",
+            "artist": "Auguste Herbin",
+            "image_url": "https://uploads8.wikiart.org/images/auguste-herbin/untitled-1913.jpg!Large.jpg"
+        }
+    ]
+}

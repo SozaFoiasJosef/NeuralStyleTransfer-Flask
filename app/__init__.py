@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from config import config
 #from flask_bootstrap import Bootstrap
 from flask_navigation import Navigation
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 
 login_manager = LoginManager()
 login_manager.login_view = "main.login"

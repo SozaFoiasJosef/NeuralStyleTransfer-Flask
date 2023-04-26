@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, IntegerField, BooleanField, SelectField, FileField
-from wtforms.validators import DataRequired, Length, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, EqualTo, ValidationError, NumberRange
 import re
 import os
 from werkzeug.utils import secure_filename
@@ -32,5 +32,6 @@ class EditPointsForm(FlaskForm):
 class PhotosForm(FlaskForm):
     contentImg = FileField('Content', validators=[DataRequired()])
     styleImg = FileField('Style', validators=[DataRequired()])
+    slider = IntegerField('Slider', validators=[NumberRange(min=50, max=400)])
     submit = SubmitField('Submit')
 

@@ -6,13 +6,24 @@ from .forms import RegisterForm, LoginForm, PhotosForm
 from flask_login import login_user, logout_user, login_required, current_user
 import os
 from werkzeug.utils import secure_filename
-
+import json
 from pathlib import Path
 
 from PIL import Image
 from torchvision.utils import save_image
 from .neural_transfer import showImage
 import config
+
+class ContentExamples:
+    def __init__(self, title, artist, image_url):
+        self.title = title
+        self.artist = artist
+        self.image_url = image_url
+class StyleExamples:
+    def __init__(self, title, artist, image_url):
+        self.title = title
+        self.artist = artist
+        self.image_url = image_url
 
 @main.route('/uploads/<name>')
 def download_file(name):
@@ -67,15 +78,19 @@ def logout():
     logout_user()
     return render_template("index.html")
 
+slider_Value = 50
 
 @main.route("/photo", methods=["GET", "POST"])
 def photo():
     form = PhotosForm()
+    global slider_value
 
     if form.validate_on_submit() and request.method == 'POST':
         # Get the uploaded files from the request
         contentImg = form.contentImg.data
         styleImg = form.styleImg.data
+        slider_value = form.slider.data
+        print(slider_value)
         
         #initial save
         contentImg.save(os.path.join(config.UPLOAD_FOLDER, 'content.jpg'))
@@ -96,20 +111,21 @@ def photo():
 @main.route("/result", methods=["GET", "POST"])
 def result():
 
+    global slider_value
     #run neural transfer
-    output_image = showImage(os.path.join(config.UPLOAD_FOLDER,'content.jpg'), os.path.join(config.UPLOAD_FOLDER,'style.jpg'))
+    output_image = showImage(os.path.join(config.UPLOAD_FOLDER,'content.jpg'), os.path.join(config.UPLOAD_FOLDER,'style.jpg'), slider_value=slider_value)
     #resize image
     output_image = output_image.resize((600, 800))
     # save image
     output_image.save(os.path.join(config.UPLOAD_FOLDER, 'output.jpg'))
 
-    return render_template('result.html', output_image=url_for('static', filename='output.jpg'), content_image=url_for('static', filename='content.jpg'), style_image=url_for('static', filename='style.jpg'))
+    return render_template('result.html', slider_value=slider_value, output_image=url_for('static', filename='output.jpg'), content_image=url_for('static', filename='content.jpg'), style_image=url_for('static', filename='style.jpg'))
 
 
 @main.route("/profile", methods=["GET", "POST"])
 @login_required
 def profile():
-    return redirect(url_for("main.profile_user", username=current_user.username, output_image=url_for('static', filename='output.jpg'), content_image=url_for('static', filename='content.jpg'), style_image=url_for('static', filename='style.jpg')))
+    return redirect(url_for("main.profile_user", username=current_user.username))
 
 
 @main.route("/<username>", methods=["GET", "POST"])
@@ -122,6 +138,26 @@ def profile_user(username):
     return render_template("profile.html", user=user, output_image=url_for('static', filename='output.jpg'), content_image=url_for('static', filename='content.jpg'), style_image=url_for('static', filename='style.jpg'))
 
 
+with open(os.path.join(config.UPLOAD_FOLDER,"images.json"), encoding="utf-8") as f:
+    json_data = json.load(f)
+contents = json_data["content_urls"]
+styles = json_data["style_urls"]
+
+
+@main.route("/examples", methods=["GET", "POST"])
+def examples():
+    return render_template("examples.html")
+
+@main.route('/examples/style/json')
+def style_json():
+    global styles  # define this list as appropriate
+    
+    return jsonify(styles)
+
+@main.route('/examples/content/json')
+def content_json():
+    global contents   # define this list as appropriate
+    return jsonify(contents)
 
 @main.before_app_first_request
 def create_tables():

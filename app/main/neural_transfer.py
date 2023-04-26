@@ -57,13 +57,10 @@ import torch.nn.functional as F
 import torch.optim as optim
 
 from PIL import Image
-#import matplotlib.pyplot as plt
 
 import torchvision.transforms as transforms
 import torchvision.models as models
 
-import copy
-import os
 
 from pathlib import Path
 
@@ -115,14 +112,6 @@ def image_loader(image_name):
     return image.to(device, torch.float)
 
 
-#style_img = image_loader(os.path.join(os.path.dirname(__file__), 'fluid_style.jpeg'))
-#content_img = image_loader(os.path.join(os.path.dirname(__file__),"IMG_4309.jpg"))
-#content_img = image_loader(contentImg)
-#style_img = image_loader(styleImg)
-
-#assert style_img.size() == content_img.size(), \
-    "we need to import style and content images of the same size"
-
 
 ######################################################################
 # Now, let's create a function that displays an image by reconverting a 
@@ -132,24 +121,12 @@ def image_loader(image_name):
 
 unloader = transforms.ToPILImage()  # reconvert into PIL image
 
-#plt.ion()
 
 def imshow(tensor, title=None):
     image = tensor.cpu().clone()  # we clone the tensor to not do changes on it
     image = image.squeeze(0)      # remove the fake batch dimension
     image = unloader(image)
     return image
-    #plt.imshow(image)
-    #if title is not None:
-        #plt.title(title)
-    #plt.pause(0.001) # pause a bit so that plots are updated
-
-
-#plt.figure()
-#imshow(style_img, title='Style Image')
-
-#plt.figure()
-#imshow(content_img, title='Content Image')
 
 ######################################################################
 # Loss Functions
@@ -378,13 +355,6 @@ def get_style_model_and_losses(cnn, normalization_mean, normalization_std,
 # or white noise.
 # 
 
-#input_img = content_img.clone()
-# if you want to use white noise instead uncomment the below line:
-#input_img = torch.randn(content_img.data.size(), device=device)
-
-# add the original input image to the figure:
-#plt.figure()
-#imshow(input_img, title='Input Image')
 
 
 ######################################################################
@@ -419,7 +389,7 @@ def get_input_optimizer(input_img):
 
 def run_style_transfer(cnn, normalization_mean, normalization_std,
                        content_img, style_img, input_img, num_steps=100,
-                       style_weight=100000, content_weight=1):
+                       style_weight=1000000, content_weight=1):
     """Run the style transfer."""
     print('Building the style transfer model..')
     model, style_losses, content_losses = get_style_model_and_losses(cnn,
@@ -479,9 +449,7 @@ def run_style_transfer(cnn, normalization_mean, normalization_std,
 # Finally, we can run the algorithm.
 # 
 
-def showImage(content_img, style_img):
-    #style_img = image_loader(os.path.join(os.path.dirname(__file__), 'fluid_style.jpeg'))
-    #content_img = image_loader(os.path.join(os.path.dirname(__file__),"IMG_4717.jpg"))
+def showImage(content_img, style_img, slider_value):
     content_img = image_loader(content_img)
     style_img = image_loader(style_img)
     assert style_img.size() == content_img.size(), \
@@ -490,15 +458,6 @@ def showImage(content_img, style_img):
     input_img = content_img.clone()
     #input_img = torch.randn(content_img.data.size(), device=device)
     output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std,
-                            content_img, style_img, input_img)
+                            content_img, style_img, input_img, num_steps=slider_value)
     image = imshow(output)
     return image
-#output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std,
-  #                          content_img, style_img, input_img)
-#output = runTest(content_img, style_img)
-#plt.figure()
-#imshow(output, title='Output Image')
-
-# sphinx_gallery_thumbnail_number = 4
-#plt.ioff()
-#plt.show()
