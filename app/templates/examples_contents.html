@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Examples{% endblock %}
+
+{% block content %}
+<h1 class="text-center">Content Examples</h1>
+
+{% for content in contents %}
+<div class="text-center container-sm">
+    <figure class="figure">
+        <img src="{{ content.image_url }}" class="figure-img img-fluid rounded float-start" alt="...">
+        <blockquote class="blockquote">
+            <p>{{content.title}}</p>
+        </blockquote>
+    </figure>
+</div>
+{% endfor %}
+{% endblock %}

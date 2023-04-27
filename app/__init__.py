@@ -17,6 +17,7 @@ nav = Navigation()
 nav.Bar('top', [
     nav.Item('<i class="bi bi-house-fill" style="font-size: 2rem;"></i>', 'main.home'),
     nav.Item('<i class="bi bi-image" style="font-size: 2rem;"></i>', 'main.photo'),
+    nav.Item('<i class="bi bi-brush" style="font-size: 2rem;"></i>', 'main.examples_json'),
     nav.Item('<i class="bi bi-person-circle" style="font-size: 2rem;"></i>', 'main.profile'),
 ])
 

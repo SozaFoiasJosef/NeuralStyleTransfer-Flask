@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Examples{% endblock %}
+
+{% block content %}
+<h1 class="text-center">Examples</h1>
+<select id="select" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+    <option selected disabled>Select...</option>
+    <option value="1">Content</option>
+    <option value="2">Style</option>
+</select>
+<div id="dynamic-content"></div>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    select.addEventListener("change", event => {
+        if (select.value == 2) {
+            $.ajax({
+                url: "{{url_for('main.style_json')}}",
+                success: function (data) {
+                    updateContent(data);
+                }
+            });
+        } else if (select.value == 1) {
+            $.ajax({
+                url: "{{url_for('main.content_json')}}",
+                success: function (data) {
+                    updateContent(data);
+                }
+            });
+        }
+    });
+
+    function updateContent(data) {
+        var content = "";
+        if (select.value == 2) {
+
+            for (var i = 0; i < data.length; i++) {
+                content += "<div class='text-center container-sm'>";
+                content += "<figure class='figure'>";
+                content += "<img src='" + data[i].image_url + "' class='figure-img img-fluid rounded float-start' alt='NOT AVAILABLE SORRY'>";
+                content += "<blockquote class='blockquote'>";
+                content += "<p>" + data[i].title + "</p>";
+                content += "</blockquote>";
+                content += "<figcaption class='blockquote-footer'>";
+                content += "<cite title='Source Title'>" + data[i].artist + "</cite>";
+                content += "</figcaption>";
+                content += "</figure>";
+                content += "</div>";
+            }
+            $('#dynamic-content').html(content);
+        } else if (select.value == 1) {
+            for (var i = 0; i < data.length; i++) {
+                content += "<div class='text-center container-sm'>";
+                content += "<figure class='figure'>";
+                content += "<img src='" + data[i].image_url + "' class='figure-img img-fluid rounded float-start' alt='NOT AVAILABLE SORRY'>";
+                content += "<blockquote class='blockquote'>";
+                content += "<p>" + data[i].title + "</p>";
+                content += "</blockquote>";
+                content += "</figure>";
+                content += "</div>";
+            }
+            $('#dynamic-content').html(content);
+        }
+    }
+</script>
+{% endblock %}

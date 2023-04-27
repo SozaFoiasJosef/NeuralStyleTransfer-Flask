@@ -17,8 +17,8 @@
             "image_url": "https://www.cs.rochester.edu/u/areadmcf/images/andrew.jpg"
         },
         {
-            "title": "Thomas Shelby",
-            "image_url": "https://static.wikia.nocookie.net/peaky-blinders/images/8/8e/Tommys3.jpg/revision/latest?cb=20190715140230"
+            "title": "Peaky Blinders",
+            "image_url": "https://s3.amazonaws.com/photos.bcheights.com/wp-content/uploads/2019/10/03123602/peaky-blinders-online.jpg"
         },
         {
             "title": "Japan",
@@ -43,16 +43,6 @@
             "title": "Asheville",
             "artist": "Willem de Kooning",
             "image_url": "https://www.phillipscollection.org/sites/default/files/styles/feature_extra_large_no_crop_1200_/public/collection/0484.jpg?itok=4ZKq6G8-"
-        },
-        {
-            "title": "The Persistence of Memory",
-            "artist": "Salvador Dalí",
-            "image_url": "C:/Users/Josef/Desktop/CSC210/Project2/app/static/picasso.jpg"
-        },
-        {
-            "title": "The Persistence of Memory",
-            "artist": "Salvador Dalí",
-            "image_url": "C:/Users/Josef/Desktop/CSC210/Project2/app/static/style1.jpg"
         },
         {
             "title": "The Trial",

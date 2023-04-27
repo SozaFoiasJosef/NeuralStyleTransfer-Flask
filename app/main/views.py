@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, flash, request, session, jsonify, send_from_directory
 from . import main
 from .. import db
-from ..models import User
+from ..models import User, ContentExamples, StyleExamples
 from .forms import RegisterForm, LoginForm, PhotosForm
 from flask_login import login_user, logout_user, login_required, current_user
 import os
@@ -14,16 +14,15 @@ from torchvision.utils import save_image
 from .neural_transfer import showImage
 import config
 
-class ContentExamples:
-    def __init__(self, title, artist, image_url):
-        self.title = title
-        self.artist = artist
-        self.image_url = image_url
-class StyleExamples:
-    def __init__(self, title, artist, image_url):
-        self.title = title
-        self.artist = artist
-        self.image_url = image_url
+# class ContentExamples:
+#     def __init__(self, title, image_url):
+#         self.title = title
+#         self.image_url = image_url
+# class StyleExamples:
+#     def __init__(self, title, artist, image_url):
+#         self.title = title
+#         self.artist = artist
+#         self.image_url = image_url
 
 @main.route('/uploads/<name>')
 def download_file(name):
@@ -76,7 +75,8 @@ def register():
 def logout():
     current_user.authenticated = False
     logout_user()
-    return render_template("index.html")
+    print("user logged out")
+    return jsonify({'success': True})
 
 slider_Value = 50
 
@@ -137,16 +137,30 @@ def profile_user(username):
     )
     return render_template("profile.html", user=user, output_image=url_for('static', filename='output.jpg'), content_image=url_for('static', filename='content.jpg'), style_image=url_for('static', filename='style.jpg'))
 
-
 with open(os.path.join(config.UPLOAD_FOLDER,"images.json"), encoding="utf-8") as f:
     json_data = json.load(f)
 contents = json_data["content_urls"]
 styles = json_data["style_urls"]
 
-
 @main.route("/examples", methods=["GET", "POST"])
 def examples():
-    return render_template("examples.html")
+    createExamples()
+    print("examples created")
+    return jsonify({'success': True})
+
+@main.route("/examples/contents", methods=["GET", "POST"])
+def examples_contents():
+    contents = ContentExamples.query.all()
+    return render_template("examples_contents.html", contents=contents)
+
+@main.route("/examples/styles", methods=["GET", "POST"])
+def examples_styles():
+    styles = StyleExamples.query.all()
+    return render_template("examples_styles.html", styles=styles)
+
+@main.route("/examples_json", methods=["GET", "POST"])
+def examples_json():
+    return render_template("examples_json.html")
 
 @main.route('/examples/style/json')
 def style_json():
@@ -166,8 +180,34 @@ def create_tables():
     # db.session.add(new_user)
     db.session.commit()
 
+def createExamples():
+    for i in range(len(contents)):
+        createContentExample(contents[i]["title"], contents[i]["image_url"])
+    for i in range(len(styles)):
+        createStyleExample(styles[i]["title"], styles[i]["artist"], styles[i]["image_url"])
+    
+    f.close()
 
 def createUser(username, password):
     user = User(username=username, password=password)
-    db.session.add(user)
-    db.session.commit()
+    try:
+        db.session.add(user)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+
+def createContentExample(title, image_url):
+    content = ContentExamples(title=title, image_url=image_url)
+    try:
+        db.session.add(content)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+
+def createStyleExample(title, artist, image_url):
+    style = StyleExamples(title=title, artist=artist, image_url=image_url)
+    try:
+        db.session.add(style)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()

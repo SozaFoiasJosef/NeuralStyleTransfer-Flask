@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Examples{% endblock %}
+
+{% block content %}
+<h1 class="text-center">Style Examples</h1>
+
+{% for style in styles %}
+<div class="text-center">
+    <figure class="figure">
+        <img src="{{ style.image_url }}" class="figure-img img-fluid rounded float-start" alt="...">
+        <blockquote class="blockquote">
+            <p>{{style.title}}</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            <cite title="Source Title">{{style.artist}}</cite>
+        </figcaption>
+    </figure>
+</div>
+{% endfor %}
+{% endblock %}

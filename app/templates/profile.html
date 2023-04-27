@@ -3,12 +3,32 @@
 {% block title %}Your Profile{% endblock %}
 
 {% block content %}
-
+<div id="alert" class="alert alert-success fade show my-2 mx-2" role="alert" style="display:none;">
+    <strong>Success:</strong> You have created the examples database.
+</div>
 <div class="row justify-content-evenly my-1">
-    <div class="col-4">
+    <div class="row">
         <div class="row justify-content-evenly my-1">
             <h1 class="d-flex justify-content-center">@{{user.username}}</h1>
             <h1 class="d-flex justify-content-center">The Most Recent Style Transfer</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <div class="row justify-content-evenly">
+                <div class="col-4">
+                    <a class="btn btn-outline-primary btn-lg d-flex justify-content-center my-5"
+                        href="{{url_for('main.examples_contents')}}" role="button">Contents</a>
+                </div>
+                <div class="col-4">
+                    <a class="btn btn-outline-primary btn-lg d-flex justify-content-center my-5" role="button"
+                        id="my-button">Create Example Databases</a>
+                </div>
+                <div class="col-4">
+                    <a class="btn btn-outline-primary btn-lg d-flex justify-content-center my-5"
+                        href="{{url_for('main.examples_styles')}}" role="button">Styles</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -29,4 +49,24 @@
     </figure>
 </div>
 
+{% endblock %}
+
+
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        // Listen for the button click event
+        $("#my-button").click(function () {
+            // Show the alert box
+            $("#alert").show();
+            // Make an AJAX request to the server
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/examples', true);
+            xhr.send();
+        });
+    });
+
+</script>
 {% endblock %}

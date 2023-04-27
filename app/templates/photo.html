@@ -3,7 +3,6 @@
 {% block title %}Photo{% endblock %}
 
 {% block content %}
-</ul>
 <div class="d-flex justify-content-center my-5">
     <h1>Neural Style Transfer</h1>
 </div>
@@ -13,19 +12,39 @@
         <div class="row justify-content-evenly">
             <div class="col-4">
                 <h1 class="text-center my-5">Content Image</h1>
+                
+                <div class="d-flex justify-content-center">
+                    {% if form.contentImg.errors %}
+                    {% for error in form.contentImg.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Error:</strong> {{ error }}
+                    </div>
+                    {% endfor %}
+
+                    {% endif %}
+                </div>
                 <div class="input-group flex-nowrap container-fluid my-5">
 
-                    <input id="contentImg" name="contentImg" type="file" class="form-control"
-                        placeholder="Content Image" value="" aria-label="Username" aria-describedby="addon-wrapping"
+                    <input id="contentImg" name="contentImg" type="file" class="form-control" aria-label="Username" aria-describedby="contentImg"
                         accept="image/*">
+
                 </div>
             </div>
             <div class="col-4">
                 <h1 class="text-center my-5">Style <br> Image</h1>
+                <div class="d-flex justify-content-center">
+                    {% if form.styleImg.errors %}
+                    {% for error in form.styleImg.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Error:</strong> {{ error }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
                 <div class="input-group flex-nowrap container-fluid my-5">
+                    <input id="styleImg" name="styleImg" type="file" class="form-control"
+                         aria-label="Password" aria-describedby="styleImg" accept="image/*">
 
-                    <input id="styleImg" name="styleImg" type="file" class="form-control" placeholder="Style Image"
-                        value="" aria-label="Password" aria-describedby="addon-wrapping" accept="image/*">
                 </div>
             </div>
         </div>
@@ -34,7 +53,7 @@
         <h1 class="text-center text-decoration-underline">Strength</h1>
         <h1 id="sliderValue" class="text-center">100</h1>
         <input class="form-range" id="slider" name="slider" type="range" value="100" min="50" max="400" step="50"
-            aria-label="Slider Value" aria-describedby="addon-wrapping">
+            aria-label="Slider Value" aria-describedby="slider">
         <div class="d-flex justify-content-center"><button type="submit" class="btn btn-primary">Submit</button></div>
     </form>
 </div>

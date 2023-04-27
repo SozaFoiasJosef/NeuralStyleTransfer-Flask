@@ -9,7 +9,6 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(128))
-    points = db.Column(db.Integer, default=0)
 
     @property
     def password(self):
@@ -27,6 +26,25 @@ class User(UserMixin, db.Model):
     
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
+
+class ContentExamples(db.Model):
+    __tablename__ = "content_examples"
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(64), index=True)
+    image_url = db.Column(db.String(256), unique=True)
+    
+    def __init__(self, **kwargs):
+        super(ContentExamples, self).__init__(**kwargs)
+
+class StyleExamples(db.Model):
+    __tablename__ = "style_examples"
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(64), index=True)
+    artist = db.Column(db.String(64), index=True)
+    image_url = db.Column(db.String(256), unique=True)
+    
+    def __init__(self, **kwargs):
+        super(StyleExamples, self).__init__(**kwargs)
 
 @login_manager.user_loader
 def load_user(user_id):
