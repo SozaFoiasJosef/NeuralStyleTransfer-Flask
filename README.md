@@ -4,7 +4,7 @@
 ### You can easily get the path by clicking the path in a file explorer (windows): 
 ![image](https://user-images.githubusercontent.com/91845564/234740027-218c20f7-4105-430a-86e5-5f2ac1994245.png)
 
-### MAKE SURE to edit '/' to '\' and that the last folder is 'static'.
+### MAKE SURE to edit '/' to '\\' and that the last folder is 'static'.
 
 ## Neural Style Transfer
 #### This implementation of Neural Style Transfer uses the GATYS model. I have edited the code from https://pytorch.org/tutorials/advanced/neural_style_tutorial.html to work with flask.
