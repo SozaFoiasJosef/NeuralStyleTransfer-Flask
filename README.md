@@ -29,5 +29,9 @@
 ## The Profile tab is where you can view the most recent style transfer alongside another way to view the example images.
 ![image](https://user-images.githubusercontent.com/91845564/234741934-b443ec65-d855-4480-ae20-c729992e8c59.png)
 
-
+## When creating a virtual environment, Flask-Navigation may not work, in that case you will need to edit the following files:
+item.py
+navbar.py
+Located at: venv\Lib\site-packages\flask_navigation\
+I have included the correct version in the folder \flask-navigation-files
 
