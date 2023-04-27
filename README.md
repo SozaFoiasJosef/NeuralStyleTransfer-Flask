@@ -19,7 +19,8 @@
 ## The '/result' page displays the output of the style transfer along with the inputs below.
 ![image](https://user-images.githubusercontent.com/91845564/234741555-0326f865-c5f0-48f8-9359-e1f5892b04a1.png)
 
-## The Examples tab is where you can download some example images to use if you don't want to use your own. 
+## The Examples tab is where you can download some example images to use if you don't want to use your own.
+#### If your computer doesn't have images that you would like to use, try opening the website on your phone.
 ![image](https://user-images.githubusercontent.com/91845564/234740648-fad62a4a-bbc4-4b70-a3e7-cbe41e333570.png)
 ## To download simply right click an image and choose 'Save Image As'.
 ![image](https://user-images.githubusercontent.com/91845564/234741905-26dba431-a943-4e91-8c74-a7233d6c26d8.png)
